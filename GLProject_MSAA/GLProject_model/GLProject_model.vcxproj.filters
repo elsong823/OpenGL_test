@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyCube.cpp" />
+    <ClCompile Include="MyCamera.cpp" />
+    <ClCompile Include="MyShader.cpp" />
+    <ClCompile Include="MyBox.cpp" />
+    <ClCompile Include="MyMesh.cpp" />
+    <ClCompile Include="MyModel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="MyCube.h" />
+    <ClInclude Include="MyCamera.h" />
+    <ClInclude Include="MyShader.h" />
+    <ClInclude Include="MyBox.h" />
+    <ClInclude Include="MyMesh.h" />
+    <ClInclude Include="MyModel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{cc4b8c17-f2f6-486a-9cc8-2eb3e16783e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\bin\shaders\box.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\bin\shaders\box.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\bin\shaders\model.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\bin\shaders\model.vert">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
