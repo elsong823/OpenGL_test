@@ -1,28 +1,10 @@
-﻿生成启动时间为 2016/11/6 22:27:10。
-     1>项目“C:\Users\el\Documents\Test\GLProject_model\GLProject_model\GLProject_model.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2016/11/29 13:26:40。
+     1>项目“C:\Users\el\Documents\OpenGL_test\GLProject_model\GLProject_model\GLProject_model.vcxproj”在节点 2 上(Build 个目标)。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(357,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt MyBox.cpp MyCamera.cpp MyCube.cpp MyMesh.cpp MyModel.cpp MyShader.cpp main.cpp
-         MyBox.cpp
-         正在生成代码...
-         正在跳过...(未检测到相关更改)
-         main.cpp
-         MyShader.cpp
-         MyModel.cpp
-         MyMesh.cpp
-         MyCube.cpp
-         MyCamera.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\GLProject_model.exe" /INCREMENTAL /NOLOGO glew32s.lib glfw3.lib SOIL.lib opengl32.lib assimpd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\GLProject_model.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\GLProject_model.lib" /MACHINE:X86 Debug\main.obj
-         Debug\MyBox.obj
-         Debug\MyCamera.obj
-         Debug\MyCube.obj
-         Debug\MyMesh.obj
-         Debug\MyModel.obj
-         Debug\MyShader.obj
-         GLProject_model.vcxproj -> C:\Users\el\Documents\Test\GLProject_model\GLProject_model\..\bin\GLProject_model.exe
-     1>已完成生成项目“C:\Users\el\Documents\Test\GLProject_model\GLProject_model\GLProject_model.vcxproj”(Build 个目标)的操作。
+     1>Link:
+         GLProject_model.vcxproj -> C:\Users\el\Documents\OpenGL_test\GLProject_model\GLProject_model\..\bin\GLProject_model.exe
+     1>已完成生成项目“C:\Users\el\Documents\OpenGL_test\GLProject_model\GLProject_model\GLProject_model.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:02.46
+已用时间 00:00:00.23

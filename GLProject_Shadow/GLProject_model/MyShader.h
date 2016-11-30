@@ -8,6 +8,7 @@ private:
 public:
 	~CMyShader();
 	GLuint CreateShaderProgram(GLchar * _vert, GLchar * frag);
+	GLuint CreateShaderProgram(GLchar * _vert, GLchar * _geo, GLchar * frag);
 
 private:
 	void CheckShader(GLuint _shader);

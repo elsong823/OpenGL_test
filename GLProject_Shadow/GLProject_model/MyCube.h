@@ -9,7 +9,7 @@ public:
 	~CMyCube();
 
 public:
-	void Draw(GLuint _shaderProgram);
+	void Draw(GLuint _shaderProgram, GLuint _shadowMap);
 	void SetCamera(CMyCamera * _camera);
 	void Update(GLfloat _dt);
 	void SetPosition(glm::vec3 _pos);
@@ -28,6 +28,7 @@ protected:
 	static const glm::vec3 * cameraPos;
 
 	GLuint m_shaderProgram;
+	GLuint m_shadowMap;
 
 	CMyCamera * m_camera;
 	const glm::mat4 * m_matView;

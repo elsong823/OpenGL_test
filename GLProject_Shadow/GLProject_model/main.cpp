@@ -15,6 +15,7 @@ bool keyStatus[128] = {};
 GLint drawMode = GL_FILL;
 CMyCamera * camera = nullptr;
 
+
 void Init();
 void InitObject();
 void Exit();
@@ -48,8 +49,8 @@ void CreateLight();
 GLuint depthMapFBO;
 GLuint texDepthMap;
 GLuint depthShaderProgram;
-const GLint SHADOW_WIDTH = 1024;
-const GLint SHADOW_HEIGHT = 1024;
+const GLint SHADOW_WIDTH = 1024*2;
+const GLint SHADOW_HEIGHT = 1024*2;
 void CreateDepthMap();
 
 
@@ -60,7 +61,7 @@ glm::mat4 lightMatSpace;
 void RenderQuad();
 
 GLuint lightCube;
-void DrawLightCube();
+void DrawLight();
 //*************************************
 int main()
 {
@@ -171,6 +172,9 @@ void CursorCallback(GLFWwindow * _win, double _offsetX, double _offsetY)
 
 void Update(GLfloat _dt)
 {
+	//glm::mat4 matRotate;
+	//matRotate = glm::rotate(matRotate, _dt, glm::vec3(0.0f,0.0f,1.0f));
+	//dlight.direction = glm::vec3(matRotate * glm::vec4(dlight.direction, 0.0f));
 	CheckKeyStatus();
 	camera->Update(_dt);
 	glBindBuffer(GL_UNIFORM_BUFFER, UBO);
@@ -239,9 +243,9 @@ void Draw()
 	static glm::mat4 lightMatView;
 	static glm::mat4 lightMatProjection;
 	GLfloat nearPlane = 1.0f;
-	GLfloat farPlane = 7.5f;
-	lightMatProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, nearPlane, farPlane);
-	lightMatView = glm::lookAt(-dlight.direction, glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	GLfloat farPlane = 15.0f;
+	lightMatProjection = glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, nearPlane, farPlane);
+	lightMatView = glm::lookAt(-dlight.direction, glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, -1.0f));
 	lightMatSpace = lightMatProjection * lightMatView;
 	//Render scene from light's point of view
 	glUseProgram(depthShaderProgram);
@@ -249,20 +253,24 @@ void Draw()
 	glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
 	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
 	glClear(GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
 	DrawPlane(depthShaderProgram);
 	DrawBox(depthShaderProgram);
+	glCullFace(GL_BACK);
+
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	//reset
 	glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glUseProgram(quadShaderProgram);
-	glUniform1i(glGetUniformLocation(quadShaderProgram, "texDiff"), 0);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texDepthMap);
+
+	//RenderQuad();
 	DrawPlane(planeShaderProgram);
 	DrawBox(boxShaderProgram);
-	DrawLightCube();
+	DrawLight();
+
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
@@ -294,13 +302,13 @@ void CreatePlane()
 {
 	GLfloat planeVertices[] = {
 		// Positions            // Texture Coords (note we set these higher than 1 that together with GL_REPEAT as texture wrapping mode will cause the floor texture to repeat)
-		-5.0f, -1.5f, -5.0f, 0.0f, 1.0f, 0.0f, 0.0f, 2.0f,
-		-5.0f, -1.5f, 5.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-		5.0f, -1.5f, 5.0f, 0.0f, 1.0f, 0.0f, 2.0f, 0.0f,
+		-25.0f, -1.5f, -25.0f, 0.0f, 1.0f, 0.0f, 0.0f, 2.0f,
+		-25.0f, -1.5f, 25.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+		25.0f, -1.5f, 25.0f, 0.0f, 1.0f, 0.0f, 2.0f, 0.0f,
 
-		-5.0f, -1.5f, -5.0f, 0.0f, 1.0f, 0.0f, 0.0f, 2.0f,
-		5.0f, -1.5f, 5.0f, 0.0f, 1.0f, 0.0f, 2.0f, 0.0f,
-		5.0f, -1.5f, -5.0f, 0.0f, 1.0f, 0.0f, 2.0f, 2.0f
+		-25.0f, -1.5f, -25.0f, 0.0f, 1.0f, 0.0f, 0.0f, 2.0f,
+		25.0f, -1.5f, 25.0f, 0.0f, 1.0f, 0.0f, 2.0f, 0.0f,
+		25.0f, -1.5f, -25.0f, 0.0f, 1.0f, 0.0f, 2.0f, 2.0f
 	};
 	glGenVertexArrays(1, &planeVAO);
 	glGenBuffers(1, &planeVBO);
@@ -326,14 +334,18 @@ void DrawPlane(GLuint _shaderProgram)
 {
 	static glm::mat4 matModel;
 	glUseProgram(_shaderProgram);
-	glUniformMatrix4fv(glGetUniformLocation(planeShaderProgram, "matModel"), 1, GL_FALSE, glm::value_ptr(matModel));
-	glUniformMatrix4fv(glGetUniformLocation(planeShaderProgram, "matLightSpace"), 1, GL_FALSE, glm::value_ptr(lightMatSpace));
-	glUniform3fv(glGetUniformLocation(planeShaderProgram, "viewPos"), 1, glm::value_ptr(*camera->GetPosition()));
-	glUniform3fv(glGetUniformLocation(planeShaderProgram, "lightPos"), 1, glm::value_ptr(-dlight.direction));
-	glUniform1i(glGetUniformLocation(planeShaderProgram, "texDiff"), 0);
+	glUniformMatrix4fv(glGetUniformLocation(_shaderProgram, "matModel"), 1, GL_FALSE, glm::value_ptr(matModel));
+	glUniformMatrix4fv(glGetUniformLocation(_shaderProgram, "matLightSpace"), 1, GL_FALSE, glm::value_ptr(lightMatSpace));
+	glUniform3fv(glGetUniformLocation(_shaderProgram, "viewPos"), 1, glm::value_ptr(*camera->GetPosition()));
+	glUniform3fv(glGetUniformLocation(_shaderProgram, "fragLightDir"), 1, glm::value_ptr(dlight.direction));
+	glUniform1i(glGetUniformLocation(_shaderProgram, "texDiff"), 0);
+	glUniform1i(glGetUniformLocation(_shaderProgram, "texShadow"), 1);
 	glBindVertexArray(planeVAO);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texPlane);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, texDepthMap);
+
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(0);
@@ -343,19 +355,23 @@ void CreateBox()
 {
 	vector<glm::vec3> boxPos;
 	boxPos.emplace_back(0.0f, 1.5f, 0.0f);
-	boxPos.emplace_back(2.0f, 0.0f, 1.0f);
-	boxPos.emplace_back(-1.0f, 0.0f, 2.0f);
+	boxPos.emplace_back(2.0f, 0.0f, 1.0);
+	boxPos.emplace_back(-1.0f, 0.0f, 2.0);
 
 	vector<glm::vec3> boxRotate;
-	boxRotate.emplace_back(2.3f, 0.4f, 0.4f);
-	boxRotate.emplace_back(-1.3f, 1.2f, 1.4f);
-	boxRotate.emplace_back(1.5f, 1.0f, -0.8f);
+	boxRotate.emplace_back(1.0, 0.0, 1.0);
+	boxRotate.emplace_back(1.0, 0.0, 1.0);
+	boxRotate.emplace_back(1.0, 0.0, 1.0);
 	srand(glfwGetTime());
 	for (int i = 0; i < boxPos.size(); ++i)
 	{
 		CMyBox * box = new CMyBox();
 		box->SetPosition(boxPos[i]);
-		box->SetRotation(boxRotate[i], rand() % 360);
+		if (i == 2)
+		{
+			box->SetRotation(boxRotate[i], 60);
+			box->SetScale(glm::vec3(0.5f));
+		}
 
 		boxes.emplace_back(box);
 	}
@@ -366,59 +382,79 @@ void CreateBox()
 
 void UpdateBox(GLfloat _dt)
 {
-	for (auto box : boxes)
+	//static GLfloat timer = 0.0f;
+	//timer += _dt * 15;
+	//static glm::vec3 rotateAxis[3];
+	//static bool init = false;
+	//if (!init)
+	//{
+	//	init = true;
+	//	for (int i = 0; i < 3; ++i)
+	//	{
+	//		float x = rand() % 15;
+	//		float y = rand() % 15;
+	//		float z = rand() % 15;
+	//		rotateAxis[i] = glm::vec3(x, y, z);
+	//	}
+	//}
+	for (int i = 0; i < 3; ++i)
 	{
-		box->Update(_dt);
+
+		//boxes[i]->SetRotation(rotateAxis[i], timer);
+		boxes[i]->Update(_dt);
 	}
 }
 
 void DrawBox(GLuint _shaderProgram)
-{
+{	
+	glUseProgram(_shaderProgram);
+	glUniformMatrix4fv(glGetUniformLocation(_shaderProgram, "matLightSpace"), 1, GL_FALSE, glm::value_ptr(lightMatSpace));
+	glUniform3fv(glGetUniformLocation(_shaderProgram, "viewPos"), 1, glm::value_ptr(*camera->GetPosition()));
+	glUniform3fv(glGetUniformLocation(_shaderProgram, "fragLightDir"), 1, glm::value_ptr(dlight.direction));
 	for (auto box : boxes)
 	{
-		box->Draw(_shaderProgram);
+		box->Draw(_shaderProgram, texDepthMap);
 	}
 }
 
 void CreateLight()
 {
-	dlight.ambient = glm::vec3(0.2);
-	dlight.diffuse = glm::vec3(0.4);
-	dlight.specular = glm::vec3(1.0);
-	dlight.direction = glm::vec3(2.0f, -4.0f, 1.0f);
+	dlight.direction = glm::vec3(2.0f, -4.0f,  1.0f);
 	CMyBox::SetDirectLight(dlight);
 }
 
 void CreateDepthMap()
 {
-	//generate fbo
+	//gl fbo
 	glGenFramebuffers(1, &depthMapFBO);
-
-	//generate tex depth map
 	glGenTextures(1, &texDepthMap);
+
+	//gl bind fbo
+	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+	//gl gen tex depth
 	glBindTexture(GL_TEXTURE_2D, texDepthMap);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, nullptr);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+	GLfloat borderColor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glBindTexture(GL_TEXTURE_2D, 0);
-
 	//bind tex to fbo
-	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, texDepthMap, 0);
 	glDrawBuffer(GL_NONE);
 	glReadBuffer(GL_NONE);
 	auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	if (status != GL_FRAMEBUFFER_COMPLETE)
 	{
-		printf_s("Create shadow fbo failed!\n");
+		printf_s("Create fbo failed!\n");
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	//Create shader
+	//creaet shader
 	depthShaderProgram = CMyShader::GetInstance()->CreateShaderProgram("../bin/shaders/depth.vert","../bin/shaders/depth.frag");
-
 }
 
 void RenderQuad()
@@ -444,24 +480,42 @@ void RenderQuad()
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 	}
+	glUseProgram(quadShaderProgram);
 	glBindVertexArray(quadVAO);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texDepthMap);
+	glUniform1i(glGetUniformLocation(quadShaderProgram, "texDiff"), 0);
+
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
 	glBindVertexArray(0);
 }
 
-void DrawLightCube()
+void DrawLight()
 {
-	static CMyCube * lightCube = nullptr;
-	static GLuint lightShaderProgram = 0;
-	if (!lightCube)
+	static GLuint VAO;
+	static GLuint VBO;
+	static GLuint lightLineShaderProgram;
+	if (!VAO)
 	{
-		lightCube = new CMyCube();
-		lightCube->SetPosition(-dlight.direction);
-
-		lightShaderProgram = CMyShader::GetInstance()->CreateShaderProgram("../bin/shaders/box.vert", "../bin/shaders/cube.frag");
-		auto idx = glGetUniformBlockIndex(lightShaderProgram, "Matrices");
-		glUniformBlockBinding(lightShaderProgram, idx, 1);
-	}
-	lightCube->Update(0);
-	lightCube->Draw(lightShaderProgram);
+		float vertices[] = {
+			0.0f, 0.0f, 0.0f
+		};
+		glGenVertexArrays(1, &VAO);
+		glGenBuffers(1, &VBO);
+		glBindVertexArray(VAO);
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)* 3, 0);
+		glBindVertexArray(0);
+		lightLineShaderProgram = CMyShader::GetInstance()->CreateShaderProgram("../bin/shaders/lightLine.vert","../bin/shaders/lightLine.geo","../bin/shaders/lightLine.frag");
+		auto idx = glGetUniformBlockIndex(lightLineShaderProgram, "Matrices");
+		glUniformBlockBinding(lightLineShaderProgram, idx, 1);
+	} 
+	glUseProgram(lightLineShaderProgram);
+	glUniform3fv(glGetUniformLocation(lightLineShaderProgram, "lightPos"), 1, glm::value_ptr(-dlight.direction));
+	glBindVertexArray(VAO);
+	glDrawArrays(GL_POINTS, 0, 1);
+	glBindVertexArray(0);
 }

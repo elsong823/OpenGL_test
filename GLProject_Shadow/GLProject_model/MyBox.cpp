@@ -17,14 +17,12 @@ CMyBox::~CMyBox()
 
 void CMyBox::SubsetDraw()
 {
-	//´«µÝ²ÄÖÊ
-	glUniform1i(glGetUniformLocation(m_shaderProgram, "material.texDiffuse"), 0);
-	glUniform1i(glGetUniformLocation(m_shaderProgram, "material.texSpecular"), 1);
-	glUniform1f(glGetUniformLocation(m_shaderProgram, "material.shininess"), material.shininess);
+	glUniform1i(glGetUniformLocation(m_shaderProgram, "texDiff"), 0);
+	glUniform1i(glGetUniformLocation(m_shaderProgram, "texShadow"), 1);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, material.texDiffuse);
 	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, material.texSpecular);
+	glBindTexture(GL_TEXTURE_2D, m_shadowMap);
 }
 
 void CMyBox::Init()

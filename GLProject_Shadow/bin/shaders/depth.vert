@@ -2,9 +2,8 @@
 
 layout (location = 0) in vec3 position;
 
-uniform mat4 matLightSpace;
 uniform mat4 matModel;
-
+uniform mat4 matLightSpace;
 
 void main()
 {
