@@ -1,28 +1,28 @@
-﻿生成启动时间为 2016/11/15 10:18:51。
-     1>项目“C:\Users\el\Documents\Test\GLProject_skybox\GLProject_skybox\GLProject_depth_test\GLProject_depth_test.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2016/12/1 17:15:59。
+     1>项目“C:\Users\el\Documents\OpenGL_test\GLProject_skybox\GLProject_skybox\GLProject_depth_test\GLProject_depth_test.vcxproj”在节点 2 上(Rebuild 个目标)。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(357,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (GLProject_depth_test.vcxproj, GLProject_frameBuffer.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp MyCamera.cpp MyMesh.cpp MyModel.cpp MyShader.cpp
          MyShader.cpp
          MyModel.cpp
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(37): warning C4018: “<”: 有符号/无符号不匹配
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(44): warning C4018: “<”: 有符号/无符号不匹配
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(57): warning C4018: “<”: 有符号/无符号不匹配
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(69): warning C4018: “<”: 有符号/无符号不匹配
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(72): warning C4018: “<”: 有符号/无符号不匹配
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(39): warning C4018: “<”: 有符号/无符号不匹配
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(46): warning C4018: “<”: 有符号/无符号不匹配
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(59): warning C4018: “<”: 有符号/无符号不匹配
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(71): warning C4018: “<”: 有符号/无符号不匹配
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\mymodel.cpp(74): warning C4018: “<”: 有符号/无符号不匹配
          MyMesh.cpp
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\mymesh.cpp(41): warning C4018: “<”: 有符号/无符号不匹配
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\mymesh.cpp(41): warning C4018: “<”: 有符号/无符号不匹配
          MyCamera.cpp
          main.cpp
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(95): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(96): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(100): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(328): warning C4244: “参数”: 从“const GLint”转换到“GLfloat”，可能丢失数据
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(328): warning C4316: “CMyCamera”: 在堆上分配的对象可能不是对齐 16
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(452): warning C4018: “<”: 有符号/无符号不匹配
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(538): warning C4244: “参数”: 从“GLuint”转换到“GLfloat”，可能丢失数据
-     1>c:\users\el\documents\test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(800): warning C4018: “<”: 有符号/无符号不匹配
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(95): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(96): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(100): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(328): warning C4244: “参数”: 从“const GLint”转换到“GLfloat”，可能丢失数据
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(328): warning C4316: “CMyCamera”: 在堆上分配的对象可能不是对齐 16
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(452): warning C4018: “<”: 有符号/无符号不匹配
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(538): warning C4244: “参数”: 从“GLuint”转换到“GLfloat”，可能丢失数据
+     1>c:\users\el\documents\opengl_test\glproject_skybox\glproject_skybox\glproject_depth_test\main.cpp(800): warning C4018: “<”: 有符号/无符号不匹配
          正在生成代码...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\GLProject_skybox.exe" /INCREMENTAL /NOLOGO glew32s.lib glfw3.lib SOIL.lib assimpd.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\GLProject_skybox.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\GLProject_skybox.lib" /MACHINE:X86 Debug\main.obj
@@ -31,10 +31,10 @@
          Debug\MyModel.obj
          Debug\MyShader.obj
      1>LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
-     1>glew32s.lib(glew.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“glew32s.lib(glew.obj)”或在“C:\Users\el\Documents\Test\GLProject_skybox\GLProject_skybox\bin\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-         GLProject_depth_test.vcxproj -> C:\Users\el\Documents\Test\GLProject_skybox\GLProject_skybox\GLProject_depth_test\..\bin\GLProject_skybox.exe
-     1>已完成生成项目“C:\Users\el\Documents\Test\GLProject_skybox\GLProject_skybox\GLProject_depth_test\GLProject_depth_test.vcxproj”(Build 个目标)的操作。
+     1>glew32s.lib(glew.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“glew32s.lib(glew.obj)”或在“C:\Users\el\Documents\OpenGL_test\GLProject_skybox\GLProject_skybox\bin\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+         GLProject_depth_test.vcxproj -> C:\Users\el\Documents\OpenGL_test\GLProject_skybox\GLProject_skybox\GLProject_depth_test\..\bin\GLProject_skybox.exe
+     1>已完成生成项目“C:\Users\el\Documents\OpenGL_test\GLProject_skybox\GLProject_skybox\GLProject_depth_test\GLProject_depth_test.vcxproj”(Rebuild 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:06.12
+已用时间 00:00:05.72

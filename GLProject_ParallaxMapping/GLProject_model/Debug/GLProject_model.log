@@ -1,0 +1,28 @@
+﻿生成启动时间为 2016/12/5 15:06:33。
+     1>项目“C:\Users\el\Documents\OpenGL_test\GLProject_ParallaxMapping\GLProject_model\GLProject_model.vcxproj”在节点 2 上(Build 个目标)。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(357,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (GLProject_model.vcxproj, GLProject_STD.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\el\documents\opengl_test\glproject_parallaxmapping\glproject_model\main.cpp(58): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+     1>c:\users\el\documents\opengl_test\glproject_parallaxmapping\glproject_model\main.cpp(59): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+     1>c:\users\el\documents\opengl_test\glproject_parallaxmapping\glproject_model\main.cpp(63): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+     1>c:\users\el\documents\opengl_test\glproject_parallaxmapping\glproject_model\main.cpp(254): warning C4244: “参数”: 从“const GLint”转换到“GLfloat”，可能丢失数据
+     1>c:\users\el\documents\opengl_test\glproject_parallaxmapping\glproject_model\main.cpp(254): warning C4316: “CMyCamera”: 在堆上分配的对象可能不是对齐 16
+     1>c:\users\el\documents\opengl_test\glproject_parallaxmapping\glproject_model\main.cpp(357): warning C4316: “CMyCube”: 在堆上分配的对象可能不是对齐 16
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\GLProject_ParallaxMapping.exe" /INCREMENTAL /NOLOGO glew32s.lib glfw3.lib SOIL.lib opengl32.lib assimpd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\GLProject_ParallaxMapping.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\GLProject_ParallaxMapping.lib" /MACHINE:X86 Debug\LightLine.obj
+         Debug\main.obj
+         Debug\MyBox.obj
+         Debug\MyCamera.obj
+         Debug\MyCube.obj
+         Debug\MyMesh.obj
+         Debug\MyModel.obj
+         Debug\MyShader.obj
+         GLProject_model.vcxproj -> C:\Users\el\Documents\OpenGL_test\GLProject_ParallaxMapping\GLProject_model\..\bin\GLProject_ParallaxMapping.exe
+     1>已完成生成项目“C:\Users\el\Documents\OpenGL_test\GLProject_ParallaxMapping\GLProject_model\GLProject_model.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:02.07

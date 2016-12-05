@@ -13,7 +13,7 @@ CMyCamera::CMyCamera(GLfloat _fov, GLfloat _viewWidth, GLfloat _viewHeight, glm:
 :m_position(_pos),
 m_worldUp(0.0f, 1.0f, 0.0f),
 m_fov(_fov),
-m_moveSpeed(3.0f),
+m_moveSpeed(13.0f),
 m_dirty(true),
 m_curMoveStatus(0x00000000),
 m_sensitive(0.03f)

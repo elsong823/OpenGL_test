@@ -30,6 +30,8 @@ CMyModel::CMyModel(const char * _path, GLuint _skyBoxID)
 	{
 		mesh->SetSkyBox(_skyBoxID);
 	}
+
+	int a = 1;
 }
 
 void CMyModel::ProcessNode(aiNode * _node,const aiScene * _scene)
