@@ -32,6 +32,7 @@ void CMyCamera::Update(GLfloat _dt)
 	{
 		m_matView = glm::lookAt(m_position, m_position + m_faceTo, m_worldUp);
 		m_dirty = false;
+		//printf_s("camera pos:%.1f,%.1f,%.1f, lookAt:%.1f,%.1f,%.1f\n", m_position.x, m_position.y, m_position.z, (m_faceTo + m_position).x, (m_faceTo + m_position).y, (m_faceTo + m_position).z);
 	}
 }
 
