@@ -18,6 +18,8 @@ using namespace std;
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H  
 
 #define SINGLETON(cls)\
 public:\
@@ -108,5 +110,13 @@ static GLuint LoadTexture(const char * _path, bool _alpha)
 	source = nullptr;
 	return texture;
 }
+
+struct stCharacter
+{
+	GLuint textureID;	//字形纹理id
+	glm::ivec2 size;	//字形大小
+	glm::ivec2 bearing;	//从基准线到字形左部/顶部的偏移值
+	GLuint     advance;    // 原点距下一个字形原点的距离
+};
 
 #endif
